@@ -4,16 +4,12 @@ import java.util.ArrayList;
 public abstract class Account {
     protected List<User> follows;
     protected List<User> followers;
-    protected List<Post> posts;
-    protected List<Hobby> hobbies;
     protected List<Message> sentMessages;
     protected List<Message> receivedMessages;
 
     public Account(){
         this.follows = new ArrayList<>();
         this.followers = new ArrayList<>();
-        this.posts = new ArrayList<>();
-        this.hobbies = new ArrayList<>();
         this.sentMessages = new ArrayList<>();
         this.receivedMessages = new ArrayList<>();
     }
@@ -51,5 +47,14 @@ public abstract class Account {
         else {
             System.out.println("Usuario nao encontrado");
         }
+    }
+
+    public void sendMessage(User sender, User receiver, String content) {
+        Message newMessage = new Message(sender, receiver, content);
+        sender.sentMessages.add(newMessage);
+        receiver.receivedMessages.add(newMessage);
+
+        Interaction messageInteraction = new Interaction(Action.Message, sender, receiver);
+        sender.addInteraction(messageInteraction);
     }
 }

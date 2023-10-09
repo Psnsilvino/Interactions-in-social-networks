@@ -11,15 +11,15 @@ public class Network {
     }
 
     public void registerUser(User user) {
-        users.add(user);
+        this.users.add(user);
     }
 
     public void createPost(Post post) {
-        posts.add(post);
+        this.posts.add(post);
     }
 
     public void removeUser(User user) {
-        users.remove(user);
+        this.users.remove(user);
     }
 
     public int getUsersSize() {
@@ -45,4 +45,26 @@ public class Network {
         }
     }
 
+    public User findUser(int userID) {
+        User foundUser;
+        for (User u : users) {
+            int verifiedUsername = u.getId();
+            if (verifiedUsername == userID) {
+                foundUser = u;
+                return foundUser;
+            }
+        }
+        return null;
+    }
+
+    public Post findPost(int postId) {
+        Post foundPost;
+        for (Post p : posts) {
+            if (p.getId() == postId) {
+                foundPost = p;
+                return foundPost;
+            }
+        }
+        return null;
+    }
 }

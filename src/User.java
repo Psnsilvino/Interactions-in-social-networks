@@ -13,6 +13,10 @@ public class User extends Account{
         this.interactions = new ArrayList<>();
     }
 
+    public int getId() {
+        return this.userID;
+    }
+
     public String getUsername() {
         return this.username;
     }

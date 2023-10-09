@@ -9,6 +9,7 @@ public class Post {
     private List<Comment> comments;
 
     public Post(int id, User author, String content) {
+        this.id = id;
         this.author = author;
         this.content = content;
         this.likes = new ArrayList<>();
@@ -28,6 +29,10 @@ public class Post {
 
         Interaction commentInteraction = new Interaction(Action.Comment, user, this.author);
         user.addInteraction(commentInteraction);
+    }
+
+    public int getId() {
+        return this.id;
     }
 
     public User getAuthor() {
