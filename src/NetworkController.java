@@ -97,16 +97,16 @@ public class NetworkController {
     }
 
     private void follow() {
-        System.out.println("Qual o id do usuario que vai deixar de seguir: ");
-        int id = this.scanner.nextInt();
-        User followed = network.findUser(id);
+        System.out.println("Qual o username do usuario que vai deixar de seguir: ");
+        String username = this.scanner.nextLine();
+        User followed = network.findUser(username);
         this.loggedUser.follow(loggedUser, followed);
     }
 
     private void unfollow() {
-        System.out.println("Qual o id do usuario que vai deixar de seguir: ");
-        int id = this.scanner.nextInt();
-        User unfollowed = network.findUser(id);
+        System.out.println("Qual o username do usuario que vai deixar de seguir: ");
+        String username = this.scanner.nextLine();
+        User unfollowed = network.findUser(username);
         this.loggedUser.unfollow(loggedUser, unfollowed);
     }
 
@@ -135,18 +135,18 @@ public class NetworkController {
     }
 
     private void sendMessage() {
-        System.out.println("Qual o id do destinatario");
-        int messagedId = this.scanner.nextInt();
-        User messagedUser = network.findUser(messagedId);
+        System.out.println("Qual o username do destinatario: ");
+        String messagedUsername = this.scanner.nextLine();
+        User messagedUser = network.findUser(messagedUsername);
         System.out.println("Qual o conteudo da mensagem: ");
         String content = this.scanner.nextLine();
         loggedUser.sendMessage(loggedUser, messagedUser, content);
     }
 
     private void changeUser() {
-        System.out.println("Qual o id do usuario a ser logado: ");
-        int userId = this.scanner.nextInt();
-        User newUser = network.findUser(userId);
+        System.out.println("Qual o username do usuario a ser logado: ");
+        String username = this.scanner.nextLine();
+        User newUser = network.findUser(username);
         this.loggedUser = newUser;
     }
 }

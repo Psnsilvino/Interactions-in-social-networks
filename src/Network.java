@@ -45,11 +45,10 @@ public class Network {
         }
     }
 
-    public User findUser(int userID) {
+    public User findUser(String username) {
         User foundUser;
         for (User u : users) {
-            int verifiedUsername = u.getId();
-            if (verifiedUsername == userID) {
+            if (u.getUsername().equals(username)) {
                 foundUser = u;
                 return foundUser;
             }

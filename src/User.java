@@ -29,14 +29,13 @@ public class User extends Account{
         this.interactions.remove(interaction);
     }
 
-    public Interaction findInteraction(Action action, User otherUser){
+    public Interaction findInteraction(Action action, User otherUser) {
         for (Interaction interaction : interactions) {
             if (interaction.getAction() == action && interaction.getUser1() == this && interaction.getUser2() == otherUser) {
                 return interaction;
             }
         }
-        Interaction defaultInteraction = new Interaction(null, null, null);
-        return defaultInteraction;
+        return null;
     }
         
 }
