@@ -28,7 +28,7 @@ public abstract class Account {
             followingUser.follows.add(followedUser);
             followedUser.followers.add(followingUser);
 
-            Interaction followInteraction = new Interaction(Action.Follow, followingUser, followedUser);
+            Interaction followInteraction = new Interaction(Action.Follow, followingUser, followedUser, 2);
             followingUser.addInteraction(followInteraction);
         }
         else {
@@ -54,7 +54,7 @@ public abstract class Account {
         sender.sentMessages.add(newMessage);
         receiver.receivedMessages.add(newMessage);
 
-        Interaction messageInteraction = new Interaction(Action.Message, sender, receiver);
+        Interaction messageInteraction = new Interaction(Action.Message, sender, receiver, 3);
         sender.addInteraction(messageInteraction);
     }
 }

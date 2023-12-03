@@ -1,16 +1,19 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
 
 public class User extends Account{
     private int userID;
     private String username;
     private List<Interaction> interactions;
+    private HashMap<User, Integer> interactionLevels;
 
     public User(int id, String username) {
         super();
         this.userID = id;
         this.username = username;
         this.interactions = new ArrayList<>();
+        this.interactionLevels = new HashMap<User, Integer>();
     }
 
     public int getId() {

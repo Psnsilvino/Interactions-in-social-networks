@@ -3,11 +3,13 @@ public class Interaction {
     private Action action;
     private User user1;
     private User user2;
+    private int value;
     
-    public Interaction(Action action, User user1, User user2) {
+    public Interaction(Action action, User user1, User user2, int value) {
         this.action = action;
         this.user1 = user1;
         this.user2 = user2;
+        this.value = value;
     }
 
     public Action getAction() {
@@ -22,6 +24,8 @@ public class Interaction {
         return this.user2;
     }
 
-    // TODO implementar o nivel de interacao de alguma maneira
+    public int getValue() {
+        return this.value;
+    }
 
 }

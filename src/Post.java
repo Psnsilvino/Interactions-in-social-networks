@@ -19,7 +19,7 @@ public class Post {
     public void addLike(User user) {
         likes.add(user);
 
-        Interaction likeInteraction = new Interaction(Action.Like, user, this.author);
+        Interaction likeInteraction = new Interaction(Action.Like, user, this.author, 1);
         user.addInteraction(likeInteraction);
     }
 
@@ -27,7 +27,7 @@ public class Post {
         Comment comment = new Comment(user, text);
         comments.add(comment);
 
-        Interaction commentInteraction = new Interaction(Action.Comment, user, this.author);
+        Interaction commentInteraction = new Interaction(Action.Comment, user, this.author, 2);
         user.addInteraction(commentInteraction);
     }
 
