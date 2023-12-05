@@ -24,8 +24,9 @@ public class User extends Account{
         return this.username;
     }
 
-    public void addInteraction(Interaction interaction) {
-        this.interactions.add(interaction);
+    public void addInteraction(Action action, User otherUser, int value) {
+        Interaction newInteraction = new Interaction(action, this, otherUser, value);
+        this.interactions.add(newInteraction);
     }
 
     public void removeInteraction(Interaction interaction) {
@@ -40,5 +41,32 @@ public class User extends Account{
         }
         return null;
     }
+
+    public void getInteractionLevels(){
+        for (Interaction i : this.interactions) {
+            if (!(this.interactionLevels.containsKey(i.getUser2()))) {
+                this.interactionLevels.put(i.getUser2(), i.getValue());
+            }
+            else {
+                int oldValue = this.interactionLevels.get(i.getUser2());
+                int newValue = i.getValue() + oldValue;
+                this.interactionLevels.replace(i.getUser2(), newValue);
+            }
+        }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        return false;
+    }
+
         
 }

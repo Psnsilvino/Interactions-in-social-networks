@@ -19,16 +19,14 @@ public class Post {
     public void addLike(User user) {
         likes.add(user);
 
-        Interaction likeInteraction = new Interaction(Action.Like, user, this.author, 1);
-        user.addInteraction(likeInteraction);
+        user.addInteraction(Action.Like, this.author, 1);
     }
 
     public void addComment(User user, String text) {
         Comment comment = new Comment(user, text);
         comments.add(comment);
 
-        Interaction commentInteraction = new Interaction(Action.Comment, user, this.author, 2);
-        user.addInteraction(commentInteraction);
+        user.addInteraction(Action.Comment, this.author, 2);
     }
 
     public int getId() {

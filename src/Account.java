@@ -14,9 +14,9 @@ public abstract class Account {
         this.receivedMessages = new ArrayList<>();
     }
 
-    public boolean verifyFollows(User targetUser) {
+    public boolean isFollowing(User targetUser) {
         for (User user : follows) {
-            if (targetUser == user) {
+            if (user.equals(targetUser)) {
                 return true;
             }
         }
@@ -24,12 +24,11 @@ public abstract class Account {
     }
 
     public void follow(User followingUser, User followedUser) {
-        if (!verifyFollows(followedUser)) {
+        if (!isFollowing(followedUser)) {
             followingUser.follows.add(followedUser);
             followedUser.followers.add(followingUser);
 
-            Interaction followInteraction = new Interaction(Action.Follow, followingUser, followedUser, 2);
-            followingUser.addInteraction(followInteraction);
+            followingUser.addInteraction(Action.Follow, followedUser, 2);
         }
         else {
             System.out.println("Usuario ja seguido");
@@ -37,7 +36,7 @@ public abstract class Account {
     }
 
     public void unfollow(User unfollowingUser, User unfollowedUser) {
-        if (verifyFollows(unfollowedUser)) {
+        if (isFollowing(unfollowedUser)) {
             unfollowingUser.follows.remove(unfollowedUser);
             unfollowedUser.followers.remove(unfollowingUser);
 
@@ -50,11 +49,15 @@ public abstract class Account {
     }
 
     public void sendMessage(User sender, User receiver, String content) {
-        Message newMessage = new Message(sender, receiver, content);
-        sender.sentMessages.add(newMessage);
-        receiver.receivedMessages.add(newMessage);
+        if (sender.isFollowing(receiver) && receiver.isFollowing(sender)) {
+            Message newMessage = new Message(sender, receiver, content);
+            sender.sentMessages.add(newMessage);
+            receiver.receivedMessages.add(newMessage);
 
-        Interaction messageInteraction = new Interaction(Action.Message, sender, receiver, 3);
-        sender.addInteraction(messageInteraction);
+            sender.addInteraction(Action.Message, receiver, 3);
+        }
+        else {
+            System.out.println("Nao é possivel enviar mensagem ao usuario");
+        }
     }
 }
